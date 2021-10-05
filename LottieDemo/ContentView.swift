@@ -8,9 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var scaleOnOff = false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack {
+            
+            LottieView(name: "robot", loopMode: .loop)
+                .frame(width: scaleOnOff ? 250 : 500, height: scaleOnOff ? 250 : 500)
+                .offset(x: scaleOnOff ? 100 : 0)
+                .animation(.spring())
+            
+            HStack {
+                Button {
+                    scaleOnOff.toggle()
+                } label: {
+                    Text("放大縮小")
+                }
+                
+                Button {
+                    scaleOnOff.toggle()
+                } label: {
+                    Text("旋轉")
+                }
+            }
+            .padding(.top,500)
+
+        }
     }
 }
 
